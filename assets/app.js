@@ -36,7 +36,9 @@ function BuildGroup(title) {
 }
 
 function init() {
-    let config = GetConfig("default");
+    let params = getUrlParams();
+
+    let config = getConfig(params.ConfigKey);
 
     renderTemplate("header", config);
     renderTemplate("links", config);
@@ -53,7 +55,7 @@ function renderBackground() {
     document.body.style.backgroundImage = "url('background/1.jpg')";
 }
 
-function GetConfig(key) {
+function getConfig(key) {
     let config = configs[key];
 
     if (config != undefined)
@@ -75,4 +77,19 @@ function GetConfig(key) {
             BuildGroup("Git")
                 .addLink("Github", "https://github.com")
         );
+}
+
+function getUrlParams() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var params = {
+        BackgroundImage: "",
+        ConfigKey: ""
+    };
+
+    if (urlParams.has('bg'))
+        params.BackgroundImage = urlParams.get('bg');
+    if (urlParams.has('cfg'))
+        params.ConfigKey = urlParams.get('cfg');
+
+    return params;
 }
