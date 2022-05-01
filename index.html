@@ -25,9 +25,11 @@
 
             let config = getConfig(params.ConfigKey);
 
-            renderTemplate("header", config);
             renderTemplate("links", config);
             renderBackground(params.BackgroundKey, params.IsDark);
+            renderDateTime();
+
+            setInterval(renderDateTime, 1000);
         }
     </script>
 </head>
@@ -35,12 +37,13 @@
 <body onload="init()">
     <main>
         <section id="header">
-            <script type="text/handlebars-template" id="header-template">
-            {{#header}}
-            <h1>{{title}}</h1>
-            {{/header}}
-            </script>
+            <div>
+                <span id="time">19:01</span>
+                <hr width="100%">
+                <span id="date">Sonntag, 01.05.2022</span>
+            </div>
         </section>
+
         <section id="links">
             <script type="text/handlebars-template" id="links-template">
             <div id="links_loop">

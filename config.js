@@ -3,7 +3,6 @@
 // Example for config registration
 
 registerConfig("default", buildConfig()
-    .setHeader("Hallo")
     .addGroup(
         buildGroup("first group")
             .addLink("first", "https://example.com")

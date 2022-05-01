@@ -3,6 +3,7 @@
 var configs = {};
 var backgroundsLight = {};
 var backgroundsDark = {};
+var lastDate
 
 function registerConfig(key, config) {
     configs[key] = config;
@@ -10,13 +11,8 @@ function registerConfig(key, config) {
 
 function buildConfig() {
     return {
-        header: { title: "Hallo" },
         groups: [],
 
-        setHeader: function (title) {
-            this.header.title = title;
-            return this;
-        },
         addGroup: function (group) {
             this.groups.push(group);
             return this;
@@ -78,6 +74,17 @@ function renderBackground(backgroundKey, isDark) {
     }
 }
 
+function renderDateTime() {
+    let currentDate = new Date();
+    currentDate.setSeconds(0, 0);
+    if (lastDate != currentDate.toTimeString()) {
+        lastDate = currentDate.toTimeString()
+        let dateOptions = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+        document.getElementById("date").innerHTML = currentDate.toLocaleDateString(undefined, dateOptions);
+        document.getElementById("time").innerHTML = currentDate.getHours() + ":" + currentDate.getMinutes();
+    }
+}
+
 function getConfig(key) {
     let config = configs[key];
 
@@ -85,7 +92,6 @@ function getConfig(key) {
         return config;
 
     return buildConfig()
-        .setHeader("Example Config")
         .addGroup(
             buildGroup("Social")
                 .addLink("Facebook", "https://www.facebook.com")
