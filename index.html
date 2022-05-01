@@ -22,8 +22,8 @@
   -->
 
     <link rel="stylesheet" href="assets/site.css">
-    <script src="config.js"></script>
     <script src="assets/app.js"></script>
+    <script src="config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 </head>
@@ -40,14 +40,14 @@
         <section id="links">
             <script type="text/handlebars-template" id="links-template">
             <div id="links_loop">
-                {{#bookmarks}}
+                {{#groups}}
                     <div id="links_item">
-                        <h4>{{category}}</h4>
+                        <h4>{{title}}</h4>
                         {{#links}}
                             <a href="{{url}}" target="{{#if target}}{{target}}{{else}}_blank{{/if}}" class="theme_color-border theme_text-select">{{name}}</a>
                         {{/links}}
                     </div>
-                {{/bookmarks}}
+                {{/groups}}
             </div>
             </script>
         </section>
