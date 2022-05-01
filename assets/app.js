@@ -81,7 +81,7 @@ function renderDateTime() {
         lastDate = currentDate.toTimeString()
         let dateOptions = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
         document.getElementById("date").innerHTML = currentDate.toLocaleDateString(undefined, dateOptions);
-        document.getElementById("time").innerHTML = currentDate.getHours() + ":" + currentDate.getMinutes();
+        document.getElementById("time").innerHTML = currentDate.getHours().toString().padStart(2, "0") + ":" + currentDate.getMinutes().toString().padStart(2, "0");
     }
 }
 
