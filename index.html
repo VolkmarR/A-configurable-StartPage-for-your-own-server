@@ -13,19 +13,22 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <!--
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
-  -->
-
     <link rel="stylesheet" href="assets/site.css">
     <script src="assets/app.js"></script>
     <script src="config.js"></script>
+    <script src="backgroundConfig.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+        function init() {
+            let params = getUrlParams();
 
+            let config = getConfig(params.ConfigKey);
+
+            renderTemplate("header", config);
+            renderTemplate("links", config);
+            renderBackground(params.BackgroundKey, params.IsDark);
+        }
+    </script>
 </head>
 
 <body onload="init()">
@@ -53,7 +56,11 @@
         </section>
     </main>
 
-
+    <div id="credits">
+        <script type="text/handlebars-template" id="credits-template">
+            Photo by <a href="https://unsplash.com/photos/{{id}}" target="_blank">{{name}}</a> on <a href="https://unsplash.com/" target="_blank">Unsplash</a>
+        </script>
+    </div>
 </body>
 
 </html>

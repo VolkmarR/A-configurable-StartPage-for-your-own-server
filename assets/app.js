@@ -1,6 +1,8 @@
 'use strict';
 
 var configs = {};
+var backgroundsLight = {};
+var backgroundsDark = {};
 
 function registerConfig(key, config) {
     configs[key] = config;
@@ -35,14 +37,12 @@ function buildGroup(title) {
     }
 }
 
-function init() {
-    let params = getUrlParams();
+function registerBackground(key, path, isLight) {
 
-    let config = getConfig(params.ConfigKey);
-
-    renderTemplate("header", config);
-    renderTemplate("links", config);
-    renderBackground();
+    if (isLight)
+        backgroundsLight[key] = path;
+    else
+        backgroundsDark[key] = path;
 }
 
 function renderTemplate(name, config) {
@@ -51,8 +51,31 @@ function renderTemplate(name, config) {
     document.getElementById(name).innerHTML = template(config);
 }
 
-function renderBackground() {
-    document.body.style.backgroundImage = "url('background/1.jpg')";
+function renderBackground(backgroundKey, isDark) {
+    var background
+    if (backgroundKey) {
+        background = backgroundsDark[backgroundKey];
+        if (background == undefined)
+            background = backgroundsLight[backgroundKey];
+    }
+
+    if (background == undefined) {
+        var backgrounds = backgroundsLight
+        if (isDark)
+            backgrounds = backgroundsDark;
+
+        var backgroundKeys = Object.keys(backgrounds)
+        background = backgrounds[backgroundKeys[Math.floor(Math.random() * backgroundKeys.length)]];
+    }
+
+    if (background != undefined) {
+        const unsplashRegex = /\/(?<name>.*)-(?<id>.{11})-unsplash.jpg/i;
+        let creditsMatch = background.match(unsplashRegex);
+        if (creditsMatch && creditsMatch.groups.name && creditsMatch.groups.id)
+            renderTemplate("credits", { name: creditsMatch.groups.name.replace("-", " "), id: creditsMatch.groups.id });
+
+        document.body.style.backgroundImage = "url('background/" + background + "')";
+    }
 }
 
 function getConfig(key) {
@@ -82,14 +105,18 @@ function getConfig(key) {
 function getUrlParams() {
     var urlParams = new URLSearchParams(window.location.search);
     var params = {
-        BackgroundImage: "",
+        BackgroundKey: "",
+        IsDark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
         ConfigKey: ""
     };
 
     if (urlParams.has('bg'))
-        params.BackgroundImage = urlParams.get('bg');
+        params.BackgroundKey = urlParams.get('bg');
     if (urlParams.has('cfg'))
         params.ConfigKey = urlParams.get('cfg');
+    if (urlParams.has('drk'))
+        params.IsDark = urlParams.get('drk') == 1;
 
     return params;
 }
+
