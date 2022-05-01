@@ -91,6 +91,10 @@ function getConfig(key) {
     if (config != undefined)
         return config;
 
+    var values = Object.values(configs);
+    if (values.length > 0)
+        return values[0];
+
     return buildConfig()
         .addGroup(
             buildGroup("Social")
