@@ -2,11 +2,11 @@
 
 var configs = {};
 
-function RegisterConfig(key, config) {
+function registerConfig(key, config) {
     configs[key] = config;
 }
 
-function BuildConfig() {
+function buildConfig() {
     return {
         header: { title: "Hallo" },
         groups: [],
@@ -23,7 +23,7 @@ function BuildConfig() {
     };
 }
 
-function BuildGroup(title) {
+function buildGroup(title) {
     return {
         title: title,
         links: [],
@@ -61,20 +61,20 @@ function getConfig(key) {
     if (config != undefined)
         return config;
 
-    return BuildConfig()
+    return buildConfig()
         .setHeader("Example Config")
         .addGroup(
-            BuildGroup("Social")
+            buildGroup("Social")
                 .addLink("Facebook", "https://www.facebook.com")
                 .addLink("Twitter", "https://www.twitter.com")
         )
         .addGroup(
-            BuildGroup("Search")
+            buildGroup("Search")
                 .addLink("Google", "https://google.com")
                 .addLink("DuckDuckGo", "https://DuckDuckGo.com")
         )
         .addGroup(
-            BuildGroup("Git")
+            buildGroup("Git")
                 .addLink("Github", "https://github.com")
         );
 }

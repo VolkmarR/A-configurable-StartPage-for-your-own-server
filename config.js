@@ -2,17 +2,18 @@
 
 // Example for config registration
 
-RegisterConfig("default", BuildConfig()
+registerConfig("default", buildConfig()
     .setHeader("Hallo")
     .addGroup(
-        BuildGroup("first group")
+        buildGroup("first group")
             .addLink("first", "https://example.com")
             .addLink("second", "https://example.com")
     )
     .addGroup(
-        BuildGroup("first group")
+        buildGroup("first group")
             .addLink("first", "https://example.com")
             .addLink("second", "https://example.com")
     )
 );
+
 */
