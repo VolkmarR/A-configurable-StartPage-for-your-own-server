@@ -1,6 +1,7 @@
 :root {
     --background-color: #000;
-    --header-color: #333;
+    --box-header-color: rgba(30,30,30,.4);
+    --box-background-color: rgba(30,30,30,.8);
     --text-color: rgb(218, 218, 218);
     --link-color: #543fd7;
 }
@@ -11,18 +12,22 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
     font-size: 1.3em;
     font-weight: 400;
-    height: auto;
     letter-spacing: -.012em;
     margin: 0;
     padding: 0;
     width: 100vw;
     background: var(--background-color);
     color: var(--text-color);
+    background-repeat: no-repeat;
+    background-size: cover;
     /* overflow-x: hidden; dirty hack to hide horizontal scrollbars */
 }
 
 #header {
-    text-align: center;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #links_loop {
@@ -36,14 +41,15 @@ body {
 }
 
 #links_item {
-    border: var(--header-color);
+    border: var(--box-header-color);
+    background-color: var(--box-header-color);
     border-width: 1px;
     border-style: solid;
     width: 250px;
 }
 
 #links_item h4 {
-    background-color: var(--header-color);
+    background-color: var(--box-background-color);
     margin: 0em 0em 0.5em 0em;
     padding: 0.5em;
 }
