@@ -1,14 +1,13 @@
 'use strict';
 
 function init() {
-    renderLinks();
+    renderTemplate("header");
+     renderTemplate("links");
 }
 
-function renderLinks()
+function renderTemplate(name)
 {
-    const templateSouce = document.getElementById('links-template').innerHTML;
+    const templateSouce = document.getElementById(name + '-template').innerHTML;
     const template = Handlebars.compile(templateSouce);
-    document.getElementById('links').innerHTML = template(config);
-
-
+    document.getElementById(name).innerHTML = template(config);
 }

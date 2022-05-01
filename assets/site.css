@@ -1,0 +1,62 @@
+:root {
+    --background-color: #000;
+    --header-color: #333;
+    --text-color: rgb(218, 218, 218);
+    --link-color: #543fd7;
+}
+
+body {
+    /* background-color: var(--color-background);
+	color: var(--color-text-pri); */
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
+    font-size: 1.3em;
+    font-weight: 400;
+    height: auto;
+    letter-spacing: -.012em;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    background: var(--background-color);
+    color: var(--text-color);
+    /* overflow-x: hidden; dirty hack to hide horizontal scrollbars */
+}
+
+#header {
+    text-align: center;
+}
+
+#links_loop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: auto;
+    width: 100%;
+    gap: 10px;
+}
+
+#links_item {
+    border: var(--header-color);
+    border-width: 1px;
+    border-style: solid;
+    width: 250px;
+}
+
+#links_item h4 {
+    background-color: var(--header-color);
+    margin: 0em 0em 0.5em 0em;
+    padding: 0.5em;
+}
+
+#links_item a {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0em 0.5em 0.5em 0.5em;
+    opacity: 0.7;
+    transition: 500ms;
+}
+
+#links_item a:hover {
+    opacity: 1;
+}

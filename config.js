@@ -1,4 +1,7 @@
 var config = {
+    "header": {
+        "title": "Hello"
+    },
     "bookmarks": [
         {
             "category": "Communicate",
@@ -10,10 +13,6 @@ var config = {
                 {
                     "name": "Gmail",
                     "url": "http://gmail.com"
-                },
-                {
-                    "name": "Slack",
-                    "url": "https://slack.com/signin"
                 }
             ]
         },
@@ -31,6 +30,19 @@ var config = {
                 {
                     "name": "Drive",
                     "url": "https://drive.google.com"
+                }
+            ]
+        },
+        {
+            "category": "dummy",
+            "links": [
+                {
+                    "name": "Box",
+                    "url": "https://box.com"
+                },
+                {
+                    "name": "Dropbox",
+                    "url": "https://dropbox.com"
                 }
             ]
         }
